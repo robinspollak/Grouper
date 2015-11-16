@@ -1,0 +1,12 @@
+Header{
++GroupSize: 3
++Names: Robin,Jackie
+}
+Body{
+-Groupee Robin:
++Interests:Math,Science
++Positions:Leader,Head_of_Design
+-Groupee Jackie:
++Interests:English,History
++Positions:Communications,Head_of_Design
+}
