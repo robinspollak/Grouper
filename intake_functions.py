@@ -47,7 +47,7 @@ def intake_body(rawdata):
 def validate(header,body):
 	if 'Names' not in header:
 		return Exception("Grouper Syntax Error: please include a list of names to be grouped in your header")
-	body_names = map(lambda x:x.name,body)
+	body_names = list(map(lambda x:x.name,body))
 	for name in header['Names']:
 		if name not in body_names:
 			print(("Warning: %s does not have a Groupee entry and will not be grouped"%(name)))
@@ -58,6 +58,12 @@ def validate(header,body):
 			return Exception(("Grouper Logic Error: Person named %s has a groupee entry but is not included in your list of names")\
 				%(groupee.name))
 		for field_name in groupee.fields:
+			if field_name == 'WantToWorkWith' or field_name=='DontWantToWorkWith':
+				for item in groupee.fields[field_name]:
+					if item not in header['Names']:
+						return Exception(('Grouper Logic Error: %s specified %s in their %s field, but %s is not included in header')\
+							%(groupee.name,item,field_name,item))
+				continue
 			if field_name not in header:
 				return Exception(("Grouper Logic Error: Field named %s is included in a groupee entry but omitted from the header")\
 		 			%(field_name))
