@@ -1,25 +1,25 @@
 from groupee import *
 
 def prepass(string):
-	chars = repr(string)
-	return_string = ''
-	for index in range(1,len(repr(string))-1):
-		if chars[index]=='\\':
-			special_char = chars[index:index+2]
-			if special_char == '\\n':
-				return_string+=';'
-			if special_char == '\\t':
-				return_string+='~'
-		try:
-			if chars[index-1]=='\\':
-				continue
-		except:
-			pass
-		else:
-			if chars[index]!='\\':
-				return_string+=chars[index]
-	return_string+=';'
-	return return_string
+    chars = repr(string)
+    return_string = ''
+    for index in range(1,len(repr(string))-1):
+        if chars[index]=='\\':
+            special_char = chars[index:index+2]
+            if special_char == '\\n':
+                return_string+=';'
+            if special_char == '\\t':
+                return_string+='~'
+        try:
+            if chars[index-1]=='\\':
+                continue
+        except:
+            pass
+        else:
+            if chars[index]!='\\':
+                return_string+=chars[index]
+    return_string+=';'
+    return return_string
 
 def intake_header(rawdata):
 	header_fields = {}

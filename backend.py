@@ -1,2 +1,4 @@
-def process(parsed_input):
-	print("hi")
+from cassowary import *
+def process(header,body):
+	problem = SimplexSolver()
+	dict_of_groupees = {}
