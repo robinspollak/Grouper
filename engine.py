@@ -13,5 +13,6 @@ body = intake_body(program[1])
 valid = validate(header,body)
 if (type(valid)==bool):
 	process(header,body)
+
 else:
 	print(valid)

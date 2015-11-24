@@ -1,4 +1,9 @@
-from cassowary import *
+from coding import *
+from solver import *
 def process(header,body):
-	problem = SimplexSolver()
-	dict_of_groupees = {}
+    encode_dict,decode_dict = setupCoding(body)
+    encoded = encode(body,encode_dict)
+    decoded = decode(encoded,decode_dict)
+    #print(list(map(lambda x:x.name,body)),encoded,decoded)
+    handleConstraints(header,body)
+
