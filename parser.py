@@ -1,7 +1,7 @@
 from pypeg2 import *
 
 class GroupeeHeader(str):
-	grammar = "Groupee ",word,":",';'
+	grammar = "Groupee",word,":",';'
 
 class FieldData(List):
 	grammar = word, maybe_some(',',word)

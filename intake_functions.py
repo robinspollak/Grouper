@@ -19,7 +19,7 @@ def prepass(string):
             if chars[index]!='\\':
                 return_string+=chars[index]
     return_string+=';'
-    return return_string
+    return return_string.replace(" ","")
 
 def intake_header(rawdata):
 	header_fields = {}
@@ -39,9 +39,9 @@ def intake_body(rawdata):
 			try:
 				data = int(field.data[0])
 			except:
-				data = list(field.data)
+				data = list(map(lambda x:str(x),list(field.data)))
 			fields_dict[str(field.name)] = data
-		groupees.append(GroupeeStruct(groupee.name,fields_dict))
+		groupees.append(GroupeeStruct(str(groupee.name),fields_dict))
 	return groupees
 
 def validate(header,body):

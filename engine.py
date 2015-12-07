@@ -12,7 +12,9 @@ header = intake_header(program[0])
 body = intake_body(program[1])
 valid = validate(header,body)
 if (type(valid)==bool):
-	process(header,body)
+    print(process(header,body))
 
 else:
-	print(valid)
+    print(valid)
+
+
