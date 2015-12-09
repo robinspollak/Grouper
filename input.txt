@@ -1,21 +1,21 @@
 Header:
 	Group Size: 3
 	Names: Robin,Jackie,John,Marcus,Evan,Lane
-	Interests: Math,Chemistry,Biology,Politics,Media_Studies,English,History
-	Positions: Leader,Communications,Head_of_Design
+	Interests: Math,Chemistry,Biology,Politics,Media Studies,English,History
+	Positions: Leader,Communications,Head of Design
 
 Body:
 	Groupee Robin:
 		Dont Want To Work With: Robin,Marcus
 		Want To Work With: Jackie,John
 	Groupee Evan:
-		Interests:Math,Biology,Media_Studies
-		Positions:Leader,Head_of_Design
+		Interests:Math,Biology,Media Studies
+		Positions:Leader,Head of Design
 		Want To Work With: Jackie,John
 		Dont Want To Work With: Marcus,Evan
 	Groupee Jackie:
 		Interests:English,History,Biology
-		Positions:Communications,Head_of_Design
+		Positions:Communications,Head of Design
 		Want To Work With: Marcus,Robin,Evan
 		Dont Want To Work With: John
 	Groupee Marcus:

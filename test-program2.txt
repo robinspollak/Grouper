@@ -1,0 +1,70 @@
+Header:
+	Group Size: 2
+	Names: Daniel,Dawn,Alonzo,Kendra,Jerry,Tami,Melanie,Myron,Herman,Beverly,Kyle,Kim,Harvey,Blake,Darrell,Maggie,Roberta,Leona,Lee,Corey
+	Interests: Chess,Settlers of Catan,Stratego,Risk,Pandemic,Checkers,Gin,MarioKart,Halo,GOPS
+	Positions: Mentor,Student
+
+Body:
+	Groupee Daniel:
+		Interests: Chess
+		Positions: Mentor
+		Want To Work With: Lee
+	Groupee Dawn:
+		Interests: Settlers of Catan
+		Positions: Mentor
+	Groupee Alonzo:
+		Interests: Stratego
+		Positions: Mentor
+	Groupee Kendra:
+		Interests: Risk
+		Positions: Mentor
+		Want To Work With: Kyle
+	Groupee Jerry:
+		Interests: Pandemic
+		Positions: Mentor
+		Want To Work With: Leona
+	Groupee Maggie:
+		Interests: GOPS,Risk
+		Positions: Student
+		Dont Want To Work With: Leona, Kyle
+	Groupee Roberta:
+		Interests: Stratego, Risk
+		Positions: Student
+	Groupee Corey:
+		Interests: Pandemic,Checkers,Gin
+		Positions: Student
+	Groupee Leona:
+		Interests: Settlers of Catan, Risk, Pandemic
+		Positions: Student
+	Groupee Lee:
+		Positions: Student
+	Groupee Kyle:
+		Interests: Chess,Risk,Pandemic,Checkers
+		Positions: Student
+	Groupee Kim:
+		Interests: MarioKart,Halo,GOPS
+		Positions: Student
+	Groupee Harvey:
+		Interests: Gin,Stratego,GOPS
+		Positions: Student
+	Groupee Blake:
+		Interests: Halo
+		Positions: Student
+	Groupee Darrell:
+		Interests: Chess, Settlers of Catan, Stratego, Risk, Pandemic, Checkers, Gin
+		Positions: Student
+	Groupee Tami:
+		Interests: Checkers
+		Positions: Mentor
+	Groupee Melanie:
+		Interests: Gin
+		Positions: Mentor
+	Groupee Myron:
+		Interests: MarioKart
+		Positions: Mentor
+	Groupee Herman:
+		Interests: Halo
+		Positions: Mentor
+	Groupee Beverly:
+		Interests: GOPS
+		Positions: Mentor

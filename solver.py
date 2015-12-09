@@ -1,5 +1,6 @@
 from constraint import *
 from coding import *
+import signal
 #add a variable for each groupee and then make the allowed values range(len(groupees))
 #then make compare take in the number of people and the groupsize as an argument
 #TO LIMIT DONTWANTTO, WANTTO
@@ -13,6 +14,9 @@ group_size = 0
 encode_dict = {}
 decode_dict = {}
 groupee_dict = {}
+def handler(signum,frame):
+    raise Exception("get solutions timed out, constraining further")
+signal.signal(signal.SIGALRM, handler)
 def handleConstraints(header,body):
     global participants,num_participants,group_size,encode_dict,decode_dict,groupee_dict
     participants = header['Names']
@@ -26,12 +30,42 @@ def handleConstraints(header,body):
         prob.addVariable(groupee.name,range(len(header['Names'])))
     prob.addConstraint(AllDifferentConstraint())
     for groupee in body:
+        print("basic constraining %s"%(groupee.name))
         basicConstrain(prob,groupee)
-    return uniquify(prob.getSolutions())
+    basic_constrained = getSolutions(prob)
+    if type(basic_constrained)==list:
+        return basic_constrained
+    for groupee in body:
+        print("medium constraining %s"%(groupee.name))
+        mediumConstrain(prob,groupee)
+    medium_constrained = getSolutions(prob)
+    if type(medium_constrained)==list:
+        return medium_constrained
+    for groupee in body:
+        print("high constraining %s"%(groupee.name))
+        strictConstrain(prob,groupee)
+    strict_constrained = getSolutions(prob)
+    if type(strict_constrained)==list:
+        return strict_constrained
+    else:
+        return "Not enough information to generate groups, too many possible options. Please add additional information!"
+
 
 def listIntersect(list1,list2):
     return len(list(set(list1).intersection(set(list2))))
 
+def getSolutions(prob):
+    signal.alarm(5)
+    try:
+        base_solutions = prob.getSolutions()
+        signal.alarm(0)
+        solutions= uniquify(base_solutions)
+        if len(solutions)>10:
+            return -1
+        return solutions
+    except Exception as e:
+        print(e)
+        return(e)
 def basicConstrain(prob,groupee):
     if 'DontWantToWorkWith' in groupee.fields:
         for groupee2 in groupee.fields['DontWantToWorkWith']:
@@ -41,6 +75,24 @@ def basicConstrain(prob,groupee):
             interest_overlap = listIntersect(groupee.fields['Interests'],groupee2.fields['Interests'])
             if interest_overlap == 0:
                 prob.addConstraint(notInSameGroup,(groupee.name,groupee2.name))
+def mediumConstrain(prob,groupee):
+    if 'WantToWorkWith' in groupee.fields:
+        prob.addConstraint(inSameGroup,(groupee.name,groupee.fields['WantToWorkWith'][0]))
+    for groupee2 in groupee_dict.values():
+        if ('Interests' in groupee.fields and 'Interests' in groupee2.fields):
+            interest_overlap = listIntersect(groupee.fields['Interests'],groupee2.fields['Interests'])
+            if interest_overlap>(len(groupee_dict.values())/2):
+                prob.addConstraint(inSameGroup,(groupee.name,groupee2.name))
+
+def strictConstrain(prob,groupee):
+    if 'Position' in groupee.fields:
+        for groupee2 in groupee_dict.values():
+            if 'Position' in groupee2.fields:
+                position_overlap = listIntersect(groupee.fields['Positions'],groupee2.fields['Positions'])
+                if position_overlap>0:
+                    prob.addConstraint(notInSameGroup,groupee.name,groupee.name)
+    if 'WantToWorkWith' in groupee.fields:
+        prob.addConstraint(inSameGroup,(groupee.name,groupee.fields['WantToWorkWith'][-1]))
 
 def inSameGroup(a,b):
     for jumping_index in range(num_participants//group_size):
@@ -50,6 +102,7 @@ def inSameGroup(a,b):
             return True
         else:
             return False
+
 def notInSameGroup(a,b):
     return not inSameGroup(a,b)
 
@@ -75,11 +128,3 @@ def uniquify(solutions):
         if solution not in finalsolutions:
             finalsolutions.append(solution)
     return finalsolutions
-
-
-
-#part two gather information about problem to decide how big the groups are, either pass as arguments or rearrange imports?
-#need group size, length of list of names
-
-
-#problem.addConstrint(lambda a,b: a!=b, [a,b])
