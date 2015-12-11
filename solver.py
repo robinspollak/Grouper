@@ -15,34 +15,35 @@ encode_dict = {}
 decode_dict = {}
 groupee_dict = {}
 def handler(signum,frame):
-    raise Exception("get solutions timed out, constraining further")
+    raise Exception("Tried to get solutions but timed out. Please be patient while the program continues!")
 signal.signal(signal.SIGALRM, handler)
 def handleConstraints(header,body):
-    global participants,num_participants,group_size,encode_dict,decode_dict,groupee_dict
+    global participants,num_participants,interests,group_size,encode_dict,decode_dict,groupee_dict
     participants = header['Names']
     num_participants = len(header['Names'])
     group_size = int(header['GroupSize'])
     encode_dict,decode_dict = setupCoding(body)
     prob = Problem()
+    interests = header['Interests']
     groupee_dict = {}
     for groupee in body:
         groupee_dict[groupee.name]=groupee
-        prob.addVariable(groupee.name,range(len(header['Names'])))
+        prob.addVariable(groupee.name,range(num_participants))
     prob.addConstraint(AllDifferentConstraint())
     for groupee in body:
-        print("basic constraining %s"%(groupee.name))
+#        print("basic constraining %s"%(groupee.name))
         basicConstrain(prob,groupee)
     basic_constrained = getSolutions(prob)
     if type(basic_constrained)==list:
         return basic_constrained
     for groupee in body:
-        print("medium constraining %s"%(groupee.name))
+#        print("medium constraining %s"%(groupee.name))
         mediumConstrain(prob,groupee)
     medium_constrained = getSolutions(prob)
     if type(medium_constrained)==list:
         return medium_constrained
     for groupee in body:
-        print("high constraining %s"%(groupee.name))
+#        print("high constraining %s"%(groupee.name))
         strictConstrain(prob,groupee)
     strict_constrained = getSolutions(prob)
     if type(strict_constrained)==list:
@@ -55,7 +56,7 @@ def listIntersect(list1,list2):
     return len(list(set(list1).intersection(set(list2))))
 
 def getSolutions(prob):
-    signal.alarm(5)
+    signal.alarm(15)
     try:
         base_solutions = prob.getSolutions()
         signal.alarm(0)
@@ -69,24 +70,33 @@ def getSolutions(prob):
 def basicConstrain(prob,groupee):
     if 'DontWantToWorkWith' in groupee.fields:
         for groupee2 in groupee.fields['DontWantToWorkWith']:
+            if groupee.name==groupee2:
+                continue
             prob.addConstraint(notInSameGroup,(groupee.name,groupee2))
     for groupee2 in groupee_dict.values():
+        if groupee==groupee2:
+            continue
         if ('Interests' in groupee.fields and 'Interests' in groupee2.fields):
             interest_overlap = listIntersect(groupee.fields['Interests'],groupee2.fields['Interests'])
             if interest_overlap == 0:
                 prob.addConstraint(notInSameGroup,(groupee.name,groupee2.name))
 def mediumConstrain(prob,groupee):
     if 'WantToWorkWith' in groupee.fields:
+        wantto = groupee.fields['WantToWorkWith'][0]
         prob.addConstraint(inSameGroup,(groupee.name,groupee.fields['WantToWorkWith'][0]))
     for groupee2 in groupee_dict.values():
+        if groupee == groupee2:
+            continue
         if ('Interests' in groupee.fields and 'Interests' in groupee2.fields):
             interest_overlap = listIntersect(groupee.fields['Interests'],groupee2.fields['Interests'])
-            if interest_overlap>(len(groupee_dict.values())/2):
+            if interest_overlap>(len(interests)/2):
                 prob.addConstraint(inSameGroup,(groupee.name,groupee2.name))
 
 def strictConstrain(prob,groupee):
     if 'Position' in groupee.fields:
         for groupee2 in groupee_dict.values():
+            if groupee==groupee2:
+                continue
             if 'Position' in groupee2.fields:
                 position_overlap = listIntersect(groupee.fields['Positions'],groupee2.fields['Positions'])
                 if position_overlap>0:
@@ -101,7 +111,8 @@ def inSameGroup(a,b):
         if ( a>= lower and b>= lower and a < upper and b < upper):
             return True
         else:
-            return False
+            continue
+    return False
 
 def notInSameGroup(a,b):
     return not inSameGroup(a,b)
@@ -127,4 +138,10 @@ def uniquify(solutions):
     for solution in solutions:
         if solution not in finalsolutions:
             finalsolutions.append(solution)
-    return finalsolutions
+    superfinalsolutions = [finalsolutions[0]]
+    for solution in finalsolutions:
+        for group in solution:
+            if group not in superfinalsolutions[0]:
+                superfinalsolutions.append(solution)
+                break
+    return superfinalsolutions

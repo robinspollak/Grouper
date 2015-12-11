@@ -1,70 +1,30 @@
 Header:
-	Group Size: 2
-	Names: Daniel,Dawn,Alonzo,Kendra,Jerry,Tami,Melanie,Myron,Herman,Beverly,Kyle,Kim,Harvey,Blake,Darrell,Maggie,Roberta,Leona,Lee,Corey
-	Interests: Chess,Settlers of Catan,Stratego,Risk,Pandemic,Checkers,Gin,MarioKart,Halo,GOPS
-	Positions: Mentor,Student
+	Group Size: 4
+	Names: Melanie,Myron,Herman,Beverly,Maggie,Roberta,Corey,Leona,Tom,Will,Ernesto,Tessa
+	Interests: Pandemic,Through The Ages,Settlers of Catan,Cities and Knights of Catan,Puerto Rico,Risk
 
 Body:
-	Groupee Daniel:
-		Interests: Chess
-		Positions: Mentor
-		Want To Work With: Lee
-	Groupee Dawn:
-		Interests: Settlers of Catan
-		Positions: Mentor
-	Groupee Alonzo:
-		Interests: Stratego
-		Positions: Mentor
-	Groupee Kendra:
-		Interests: Risk
-		Positions: Mentor
-		Want To Work With: Kyle
-	Groupee Jerry:
-		Interests: Pandemic
-		Positions: Mentor
-		Want To Work With: Leona
-	Groupee Maggie:
-		Interests: GOPS,Risk
-		Positions: Student
-		Dont Want To Work With: Leona, Kyle
-	Groupee Roberta:
-		Interests: Stratego, Risk
-		Positions: Student
-	Groupee Corey:
-		Interests: Pandemic,Checkers,Gin
-		Positions: Student
-	Groupee Leona:
-		Interests: Settlers of Catan, Risk, Pandemic
-		Positions: Student
-	Groupee Lee:
-		Positions: Student
-	Groupee Kyle:
-		Interests: Chess,Risk,Pandemic,Checkers
-		Positions: Student
-	Groupee Kim:
-		Interests: MarioKart,Halo,GOPS
-		Positions: Student
-	Groupee Harvey:
-		Interests: Gin,Stratego,GOPS
-		Positions: Student
-	Groupee Blake:
-		Interests: Halo
-		Positions: Student
-	Groupee Darrell:
-		Interests: Chess, Settlers of Catan, Stratego, Risk, Pandemic, Checkers, Gin
-		Positions: Student
-	Groupee Tami:
-		Interests: Checkers
-		Positions: Mentor
 	Groupee Melanie:
-		Interests: Gin
-		Positions: Mentor
+		Interests: Through The Ages,Settlers of Catan,Cities and Knights of Catan,Puerto Rico
 	Groupee Myron:
-		Interests: MarioKart
-		Positions: Mentor
+		Interests: Risk,Through The Ages,Pandemic,Puerto Rico
 	Groupee Herman:
-		Interests: Halo
-		Positions: Mentor
+		Interests: Pandemic,Puerto Rico,Risk,Through The Ages
 	Groupee Beverly:
-		Interests: GOPS
-		Positions: Mentor
+		Interests: Settlers of Catan,Pandemic,Puerto Rico,Risk
+	Groupee Maggie:
+		Interests: Settlers of Catan,Pandemic,Puerto Rico,Risk
+	Groupee Roberta:
+		Interests: Through The Ages,Settlers of Catan,Cities and Knights of Catan,Puerto Rico
+	Groupee Corey:
+		Interests: Settlers of Catan,Pandemic,Puerto Rico,Risk
+	Groupee Leona:
+		Interests: Pandemic,Puerto Rico,Risk,Through The Ages
+	Groupee Tom:
+		Interests: Through The Ages,Settlers of Catan,Cities and Knights of Catan,Puerto Rico
+	Groupee Will:
+		Interests: Pandemic,Puerto Rico,Risk,Through The Ages
+	Groupee Ernesto:
+		Interests: Through The Ages,Settlers of Catan,Cities and Knights of Catan,Puerto Rico
+	Groupee Tessa:
+		Interests: Settlers of Catan,Pandemic,Puerto Rico,Risk

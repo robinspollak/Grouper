@@ -4,4 +4,5 @@ class GroupeeStruct:
         self.fields = fields
 
     def __repr__(self):
-        return 'Groupee Object. Name: %s'%(self.name)+str(self.fields)
+        #return 'Groupee Object. Name: %s'%(self.name)+str(self.fields)
+        return self.name

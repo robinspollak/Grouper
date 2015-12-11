@@ -20,9 +20,10 @@ def process(header,body):
             ,[groupee for groupee in solution[index] if 'Interests' in groupee.fields]\
             )))
             ret_string+=" and they have mutual interest in %s"%(", ".join(mutual_interests))
-            ret_string+=". "+assignRoles(header['Positions'],solution[index])
+            if 'Positions' in header:
+                ret_string+=". "+assignRoles(header['Positions'],solution[index])
             groups.append(ret_string)
-        return_solutions.append('\n'.join(groups))
+        return_solutions.append('\n\n\n'.join(groups))
     return '\nAlternate Solution:\n'.join(return_solutions)
 
 def intersectLists(lists):

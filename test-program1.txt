@@ -6,7 +6,7 @@ Header:
 
 Body:
 	Groupee Robin:
-		Dont Want To Work With: Robin,Marcus
+		Dont Want To Work With: Marcus
 		Want To Work With: Jackie,John
 	Groupee Evan:
 		Interests:Math,Biology,Media Studies
