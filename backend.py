@@ -1,9 +1,11 @@
-from coding import *
 from solver import *
+
+
+"""
+This function passes off data to the constraint solver and then handles the results. It checks for corner cases and formats the response string
+which is then passed back to the engine to be returned to the user.
+"""
 def process(header,body):
-    encode_dict,decode_dict = setupCoding(body)
-    encoded = encode(body,encode_dict)
-    decoded = decode(encoded,decode_dict)
     solutions = handleConstraints(header,body)
     if type(solutions) == str:
         return solutions
@@ -25,10 +27,15 @@ def process(header,body):
             groups.append(ret_string)
         return_solutions.append('\n\n\n'.join(groups))
     return '\nAlternate Solution:\n'.join(return_solutions)
-
+"""
+This function gets the entries shared by two lists, only including each entry once
+"""
 def intersectLists(lists):
     return list(set.intersection(*list(map(set,lists))))
-
+"""
+This function assigns roles/positions to people given a group. It passes an addition to the
+return string to the process function
+"""
 def assignRoles(positions, groupees):
     if len(positions)>len(groupees):
         print(Warning("There are more positions than members of the group, some will be left unassigned"))

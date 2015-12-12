@@ -1,5 +1,8 @@
 from groupee import *
 
+"""
+A function that replaces new line and tab characters with characters readable by the parser. Also strips white spaces.
+"""
 def prepass(string):
     chars = repr(string)
     return_string = ''
@@ -21,6 +24,9 @@ def prepass(string):
     return_string+=';'
     return return_string.replace(" ","")
 
+"""
+Reads the header into a dictionary and changes the data types of some data
+"""
 def intake_header(rawdata):
 	header_fields = {}
 	for field in rawdata.fields:
@@ -31,6 +37,9 @@ def intake_header(rawdata):
 		header_fields[str(field.name)] = data
 	return header_fields
 
+"""
+Reads the parsed body and creates a groupeestruct for each groupee and returns a list of them
+"""
 def intake_body(rawdata):
 	groupees = []
 	for groupee in rawdata.groupees:
@@ -44,6 +53,9 @@ def intake_body(rawdata):
 		groupees.append(GroupeeStruct(str(groupee.name),fields_dict))
 	return groupees
 
+"""
+Checks for some stuff that will make Grouper break that I can discern before the program runs
+"""
 def validate(header,body):
 	if 'Names' not in header:
 		return Exception("Grouper Syntax Error: please include a list of names to be grouped in your header")

@@ -1,3 +1,6 @@
+"""
+A simple structure to store the information about each groupee
+"""
 class GroupeeStruct:
     def __init__(self,name,fields):
         self.name=name
