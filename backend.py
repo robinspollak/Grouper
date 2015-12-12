@@ -23,7 +23,7 @@ def process(header,body):
             )))
             ret_string+=" and they have mutual interest in %s"%(", ".join(mutual_interests))
             if 'Positions' in header:
-                ret_string+=". "+assignRoles(header['Positions'],solution[index])
+                ret_string+=". "+(assignRoles(header['Positions'],solution[index])[:-2])
             groups.append(ret_string)
         return_solutions.append('\n\n\n'.join(groups))
     return '\nAlternate Solution:\n'.join(return_solutions)
@@ -67,7 +67,7 @@ def assignRoles(positions, groupees):
         assigned_dict[groupees_list[index]]=remaining_roles[index]
     ret_string = ''
     for item in assigned_dict.items():
-        ret_string+='%s has been assigned the role of %s, '%(item[0],item[1])
+        ret_string+='%s has been assigned the role of %s, '%(item[0],(item[1] if item[1]!='' else 'none'))
     return ret_string
 
 

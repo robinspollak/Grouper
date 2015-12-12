@@ -1,0 +1,42 @@
+Header:
+	Group Size: 3
+	Names: Daniel,Dawn,Alonzo,Kendra,Jerry,Tami,Melanie,Myron,Herman,Beverly,Kyle,Kim
+	Interests: Machine Learning, AI, SaaS, Hardware, Firmware, Metaprogramming, BioTech, EduTech
+	Positions: Leader
+
+Body:
+	Groupee Daniel:
+		Interests: Machine Learning, AI, Firmware, Metaprogramming
+		Positions: Leader
+		Want To Work With: Dawn
+	Groupee Dawn:
+		Interests: Machine Learning, AI, SaaS, Hardware, Firmware, Metaprogramming, BioTech, EduTech
+	Groupee Alonzo:
+		Interests: Metaprogramming,Machine Learning
+		Want To Work With: Dawn
+	Groupee Kendra:
+		Interests: BioTech,EduTech,SaaS
+		Positions: Leader
+		Want To Work With: Jerry
+	Groupee Jerry:
+		Interests: SaaS,AI,Firmware,EduTech
+	Groupee Tami:
+		Interests: Metaprogramming,EduTech,Firmware,SaaS
+		Want To Work With: Kendra
+	Groupee Melanie:
+		Interests: Hardware,Firmware,AI
+		Dont Want To Work With: Beverly
+	Groupee Myron:
+		Interests: AI
+		Want To Work With: Herman
+		Positions: Leader
+	Groupee Herman:
+		Interests: BioTech,AI
+		Dont Want To Work With: Kyle
+	Groupee Beverly:
+		Interests: EduTech
+		Want To Work With: Kyle, Kim
+	Groupee Kyle:
+		Interests: EduTech
+	Groupee Kim:
+		Interests: EduTech
