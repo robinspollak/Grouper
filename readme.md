@@ -3,8 +3,8 @@ A DSL written for organizers of group projects to help create the best possible 
 
 ##Example Programs
 Three example programs can be found in the folder _ExamplePrograms_. These can be run by following these steps:
-`git clone https://github.com/robinspollak/Grouper.git`
 
+`git clone https://github.com/robinspollak/Grouper.git`
 `python3 engine.py text-program1.txt`
 
 ##Contributions and Contact Info
