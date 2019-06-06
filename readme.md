@@ -8,5 +8,5 @@ Three example programs can be found in the folder _ExamplePrograms_. These can b
 
 `python3 engine.py text-program1.txt`
 
-##Contributions and Contact Info
+## Contributions and Contact Info
 If you would like to contribute, open a pull request and it will be considered ASAP. Additionally, if you would like guidance as to where to contribute, please reach out to me and [say hi!](mailto:robin@pollak.io)
